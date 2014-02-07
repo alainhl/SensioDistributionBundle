@@ -10,20 +10,10 @@
  * file that was distributed with this source code.
  */
 
-if (PHP_SAPI !== 'cli') {
-    echo 'Warning: '.__FILE__.' should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
+if (!$appDir = realpath(__DIR__.'/../../../../../../../../commons')) {
+    exit('Looks like you don\'t have a standard layout.');
 }
 
-$argv = $_SERVER['argv'];
-
-// allow the base path to be passed as the first argument, or default
-if (isset($argv[1])) {
-    $appDir = $argv[1];
-} else {
-    if (!$appDir = realpath(__DIR__.'/../../../../../../../../commons')) {
-        exit('Looks like you don\'t have a standard layout.');
-    }
-}
 
 require_once $appDir.'/autoload.php';
 
